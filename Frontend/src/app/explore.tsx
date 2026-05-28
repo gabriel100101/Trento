@@ -6,8 +6,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ExternalLink } from '@/components/external-link';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { Header } from '@/components/header';
+import { Footer } from '@/components/footer';
 import { Collapsible } from '@/components/ui/collapsible';
-import { WebBadge } from '@/components/web-badge';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
@@ -37,6 +38,7 @@ export default function TabTwoScreen() {
       style={[styles.scrollView, { backgroundColor: theme.background }]}
       contentInset={insets}
       contentContainerStyle={[styles.contentContainer, contentPlatformStyle]}>
+      <Header title="Explore" />
       <ThemedView style={styles.container}>
         <ThemedView style={styles.titleContainer}>
           <ThemedText type="subtitle">Explore</ThemedText>
@@ -119,7 +121,7 @@ export default function TabTwoScreen() {
             </ThemedText>
           </Collapsible>
         </ThemedView>
-        {Platform.OS === 'web' && <WebBadge />}
+        <Footer />
       </ThemedView>
     </ScrollView>
   );

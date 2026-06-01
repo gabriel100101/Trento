@@ -12,15 +12,18 @@ export function Header({ title = 'App Title' }: { title?: string }) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    paddingVertical: Spacing.two,
+    paddingVertical: Spacing.one,
     paddingHorizontal: Spacing.four,
     backgroundColor: theme.colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.border,
   },
   title: {
     color: theme.colors.text,
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: '700',
+    marginTop: Spacing.five,
   },
 });

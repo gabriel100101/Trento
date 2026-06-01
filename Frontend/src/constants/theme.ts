@@ -17,7 +17,7 @@ export const theme = {
     textSecondary: '#A1A1AA',
 
     danger: '#EF4444',
-    border: '#2A2A2A',
+    border: '#B0B0B0',
   },
   radius: {
     small: 8,

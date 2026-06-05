@@ -115,6 +115,7 @@ export const Fonts = Platform.select({
 });
 
 export const Spacing = {
+  zero: 0,
   half: 2,
   one: 4,
   two: 8,

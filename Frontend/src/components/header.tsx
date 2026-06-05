@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
   logo1: {
     position: 'absolute',
     left: Spacing.four,
-    top: Spacing.three,
-    width: 39,
-    height: 39,
+    top: Spacing.four,
+    width: 25,
+    height: 25,
   },
   title: {
     position: 'absolute',
@@ -52,13 +52,13 @@ const styles = StyleSheet.create({
   logo2: {
     position: 'absolute',
     right: Spacing.four,
-    top: Spacing.three,
-    width: 39,
-    height: 39,
+    top: Spacing.four,
+    width: 25,
+    height: 25,
   },
   eye2: {
     position: 'absolute',
-    left: 95,
+    left: 88,
     top: Spacing.three,
     width: 50,
     height: 50,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   eye1: {
     position: 'absolute',
-    right: 95,
+    right: 88,
     top: Spacing.three,
     width: 50,
     height: 50,

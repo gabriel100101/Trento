@@ -1,5 +1,6 @@
 import * as Device from 'expo-device';
-import { Platform, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { theme, MaxContentWidth, Spacing, BottomTabInset } from '@/constants/theme';
 import { Header } from '@/components/header';

@@ -11,7 +11,7 @@ export function Footer() {
         </View>
         <View style={[styles.item, styles.divider]}>
           <Image style={styles.icon} source={require('../../assets/emotes/Inbox.png')} />
-          <Text style={styles.label}>Caixa de Entrada</Text>
+          <Text style={styles.label}>Cartões</Text>
         </View>
         <View style={[styles.item, styles.divider]}>
           <Image style={styles.icon} source={require('../../assets/emotes/Notification.png')} />

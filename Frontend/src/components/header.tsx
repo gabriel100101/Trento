@@ -4,11 +4,9 @@ import { theme, Spacing } from '@/constants/theme';
 export function Header({ title = 'App Title' }: { title?: string }) {
   return (
     <View style={styles.container}>
-      <Image style={styles.logo1} source={require('../../assets/emotes/Logo.png')} />
       <Image style={styles.eye2} source={require('../../assets/emotes/Eye.png')} />
       <Text style={styles.title}>{title}</Text>
       <Image style={styles.eye1} source={require('../../assets/emotes/Eye1.png')} />
-      <Image style={styles.logo2} source={require('../../assets/emotes/Logo2.png')} />
     </View>
   );
 }
@@ -24,13 +22,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.border,
     position: 'relative',
-  },
-  logo1: {
-    position: 'absolute',
-    left: Spacing.four,
-    top: Spacing.four,
-    width: 25,
-    height: 25,
   },
   title: {
     position: 'absolute',
@@ -49,27 +40,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  logo2: {
-    position: 'absolute',
-    right: Spacing.four,
-    top: Spacing.four,
-    width: 25,
-    height: 25,
-  },
   eye2: {
     position: 'absolute',
-    left: 88,
+    left: 70,
     top: Spacing.three,
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     resizeMode: 'contain',
   },
   eye1: {
     position: 'absolute',
-    right: 88,
+    right: 70,
     top: Spacing.three,
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     resizeMode: 'contain',
   },
 });

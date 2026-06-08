@@ -16,7 +16,7 @@ export const theme = {
     text: '#F5F5F5',
     textSecondary: '#A1A1AA',
 
-    danger: '#EF4444',
+    danger: '#262626',
     border: '#B0B0B0',
   },
   radius: {

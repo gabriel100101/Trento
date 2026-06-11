@@ -4,7 +4,7 @@ import { Dimensions, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, 
 
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
-import { FloatingDraggable, FloatingMotion, FOOTER_HEIGHT, HEADER_HEIGHT, getMaxYForFloating } from '@/components/animation';
+import { FloatingDraggable, FloatingMotion, getMaxYForFloating } from '@/components/animation';
 
 import { theme } from '@/constants/theme';
 
@@ -94,12 +94,8 @@ export default function HomeScreen() {
     // O card deve ser limitado por: (altura do conteúdo - insetFooter - cardSize real)
     // Usamos uma estimativa de tamanho real do card (CARD_HEIGHT) para manter consistência com o clamp.
     // mesmo clamp do “+” (FloatingDraggable/FloatingMotion)
-    // getMaxYForFloating já considera HEADER_HEIGHT e FOOTER_HEIGHT.
     const minY = 0;
-    const maxY = Math.max(minY, getMaxYForFloating(height, CARD_HEIGHT) - 1);
-
-
-
+    const maxY = Math.max(minY, getMaxYForFloating(height, CARD_HEIGHT) - 18);
 
     const x = Math.random() * maxX;
     const y = Math.random() * Math.max(0, maxY);
@@ -193,7 +189,7 @@ export default function HomeScreen() {
                 minX={0} // Limite esquerdo: 0px
                 maxX={(contentSize.width || WINDOW_FALLBACK_WIDTH) - CARD_WIDTH} // Limite direito
                 minY={0} // Limite superior: 0px
-                maxY={Math.max(0, getMaxYForFloating(contentSize.height || WINDOW_FALLBACK_HEIGHT, CARD_HEIGHT) - 1)} // Limite inferior: até o Footer
+                maxY={(contentSize.height || WINDOW_FALLBACK_HEIGHT) - CARD_HEIGHT}
                 style={[styles.cardWrapper, { left: card.x, top: card.y }]}
               >
                 <Pressable

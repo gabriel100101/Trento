@@ -3,7 +3,7 @@ import { Animated, Easing, LayoutChangeEvent, Pressable, StyleSheet, Text, View,
 import { theme, BottomTabInset, Spacing } from '@/constants/theme';
 
 const OBJECT_SIZE = 56;
-export const FOOTER_HEIGHT = 33;  // Altura visual do Footer (Spacing.nine = 64)
+export const FOOTER_HEIGHT = 44; // Altura visual do Footer (usado pra limitar objetos)
 export const HEADER_HEIGHT = 100;  // Altura visual do Header (usado pra limitar objetos)
 
 // Tamanho/offset do Footer que já está embutido no clamp do botão “+”.

@@ -29,7 +29,7 @@ export function Footer() {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: Spacing.nine,
+    height: 76,
     paddingVertical: Spacing.zero,
     paddingHorizontal: Spacing.zero,
     backgroundColor: theme.colors.textSecondary,

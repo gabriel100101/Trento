@@ -4,7 +4,8 @@ import { Dimensions, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, 
 
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
-import { FloatingDraggable, FloatingMotion } from '@/components/animation';
+import { FloatingDraggable, FloatingMotion, FOOTER_HEIGHT, HEADER_HEIGHT, getMaxYForFloating } from '@/components/animation';
+
 import { theme } from '@/constants/theme';
 
 const colorOrder = [theme.colors.text, theme.colors.primaryDark, theme.colors.background] as const;
@@ -82,12 +83,27 @@ export default function HomeScreen() {
       return;
     }
 
+    // LIMITES DOS CARDS - mesma lógica do “+”, mas aplicada à área de conteúdo
+    // Como o View de cards fica APÓS o Header e ANTES do Footer, o height aqui já é “entre header e footer”.
+    // Mesmo assim, descontamos FOOTER_HEIGHT/BottomTabInset pra garantir encostar no rodapé.
     const width = contentSize.width || WINDOW_FALLBACK_WIDTH;
     const height = contentSize.height || WINDOW_FALLBACK_HEIGHT;
+
     const maxX = Math.max(0, width - CARD_WIDTH);
-    const maxY = Math.max(0, height - CARD_HEIGHT);
+
+    // O card deve ser limitado por: (altura do conteúdo - insetFooter - cardSize real)
+    // Usamos uma estimativa de tamanho real do card (CARD_HEIGHT) para manter consistência com o clamp.
+    // mesmo clamp do “+” (FloatingDraggable/FloatingMotion)
+    // getMaxYForFloating já considera HEADER_HEIGHT e FOOTER_HEIGHT.
+    const minY = 0;
+    const maxY = Math.max(minY, getMaxYForFloating(height, CARD_HEIGHT) - 1);
+
+
+
+
     const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    const y = Math.random() * Math.max(0, maxY);
+
 
     setCards((current) => [
       ...current,
@@ -167,28 +183,31 @@ export default function HomeScreen() {
           const cardBackgroundColor = getBackgroundForTitleColor(activeColor);
           return (
             <FloatingMotion
-              key={card.id}
-              color={activeColor}
-              floatDistance={floatDistance}
-              floatDuration={floatDuration}
-              floatDelay={floatDelay}
-              initialX={card.x}
-              initialY={card.y}
-              minX={0}
-              maxX={(contentSize.width || WINDOW_FALLBACK_WIDTH) - CARD_WIDTH}
-              minY={0}
-              maxY={(contentSize.height || WINDOW_FALLBACK_HEIGHT) - CARD_HEIGHT}
-              style={[styles.cardWrapper, { left: card.x, top: card.y }]}
-            >
-              <Pressable
-                style={[styles.card, { backgroundColor: cardBackgroundColor, borderColor: theme.colors.border }]}
-                onPress={() => handleCardPress(index)}
+                key={card.id}
+                color={activeColor}
+                floatDistance={floatDistance}
+                floatDuration={floatDuration}
+                floatDelay={floatDelay}
+                initialX={card.x}
+                initialY={card.y}
+                minX={0} // Limite esquerdo: 0px
+                maxX={(contentSize.width || WINDOW_FALLBACK_WIDTH) - CARD_WIDTH} // Limite direito
+                minY={0} // Limite superior: 0px
+                maxY={Math.max(0, getMaxYForFloating(contentSize.height || WINDOW_FALLBACK_HEIGHT, CARD_HEIGHT) - 1)} // Limite inferior: até o Footer
+                style={[styles.cardWrapper, { left: card.x, top: card.y }]}
               >
-                <Text style={[styles.cardTitle, { color: cardTextColor }]}>{card.title}</Text>
-                <View style={[styles.cardDivider, { backgroundColor: cardTextColor }]} />
-                <Text style={[styles.cardCount, { color: cardTextColor }]}>{card.items.length} cards criados</Text>
-              </Pressable>
+                <Pressable
+                  style={[styles.card, { backgroundColor: cardBackgroundColor, borderColor: theme.colors.border }]}
+                  onPress={() => handleCardPress(index)}
+                >
+                  <Text style={[styles.cardTitle, { color: cardTextColor }]}>{card.title}</Text>
+                  <View style={[styles.cardDivider, { backgroundColor: cardTextColor }]} />
+                  <Text style={[styles.cardCount, { color: cardTextColor }]}>
+                    {card.items.length} cards criados
+                  </Text>
+                </Pressable>
             </FloatingMotion>
+
           );
         })}
       </View>

@@ -7,8 +7,8 @@ import { Platform } from 'react-native';
 export const theme = {
   colors: {
     background: '#0D0D0D',
-    surface: '#161616',
-    card: '#1F1F1F',
+    surface: '#2A2A2A',
+    card: '#404040',
 
     primary: '#22C55E',
     primaryDark: '#16A34A',
@@ -16,7 +16,7 @@ export const theme = {
     text: '#F5F5F5',
     textSecondary: '#A1A1AA',
 
-    danger: '#EF4444',
+    danger: '#262626',
     border: '#B0B0B0',
   },
   radius: {

@@ -1,0 +1,2 @@
+- [ ] Ajustar o limite inferior (maxY) dos cards para permitir ultrapassar o Footer
+- [ ] Testar visualmente no app para confirmar que os cards desenham por baixo do footer

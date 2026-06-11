@@ -11,7 +11,7 @@ export function Footer() {
         </View>
         <View style={[styles.item, styles.divider]}>
           <Image style={styles.icon} source={require('../../assets/emotes/Inbox.png')} />
-          <Text style={styles.label}>Caixa de Entrada</Text>
+          <Text style={styles.label}>Cartões</Text>
         </View>
         <View style={[styles.item, styles.divider]}>
           <Image style={styles.icon} source={require('../../assets/emotes/Notification.png')} />
@@ -29,7 +29,7 @@ export function Footer() {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: Spacing.nine,
+    height: 76,
     paddingVertical: Spacing.zero,
     paddingHorizontal: Spacing.zero,
     backgroundColor: theme.colors.textSecondary,

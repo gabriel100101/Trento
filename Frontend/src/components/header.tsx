@@ -1,14 +1,22 @@
 import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
 import { theme, Spacing } from '@/constants/theme';
 
-export function Header({ title = 'App Title' }: { title?: string }) {
+export function Header({
+  title = 'App Title',
+  titleColor = theme.colors.text,
+  onTitlePress,
+}: {
+  title?: string;
+  titleColor?: string;
+  onTitlePress?: () => void;
+}) {
   return (
     <View style={styles.container}>
-      <Image style={styles.logo} source={require('../../assets/emotes/Logo.png')} />
-      <Image style={styles.sword1} source={require('../../assets/emotes/Eye.png')} />
-      <Text style={styles.title}>{title}</Text>
-      <Image style={styles.sword2} source={require('../../assets/emotes/Eye1.png')} />
-      <Image style={styles.logo2} source={require('../../assets/emotes/Logo2.png')} />
+      <Image style={styles.eye2} source={require('../../assets/emotes/Eye.png')} />
+      <Pressable style={styles.titleButton} onPress={onTitlePress}>
+        <Text style={[styles.title, { color: titleColor }]}>{title}</Text>
+      </Pressable>
+      <Image style={styles.eye1} source={require('../../assets/emotes/Eye1.png')} />
     </View>
   );
 }
@@ -25,16 +33,15 @@ const styles = StyleSheet.create({
     borderBottomColor: theme.colors.border,
     position: 'relative',
   },
-  logo: {
-    position: 'absolute',
-    left: Spacing.four,
-    top: Spacing.three,
-    width: 39,
-    height: 39,
-  },
-  title: {
+  titleButton: {
     position: 'absolute',
     top: Spacing.four,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
     color: theme.colors.text,
     fontSize: 22,
     fontWeight: '700',
@@ -49,27 +56,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  logo2: {
+  eye2: {
     position: 'absolute',
-    right: Spacing.four,
+    left: 60,
     top: Spacing.three,
-    width: 39,
-    height: 39,
-  },
-  sword1: {
-    position: 'absolute',
-    left: 95,
-    top: Spacing.three,
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     resizeMode: 'contain',
   },
-  sword2: {
+  eye1: {
     position: 'absolute',
-    right: 95,
+    right: 60,
     top: Spacing.three,
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     resizeMode: 'contain',
   },
 });

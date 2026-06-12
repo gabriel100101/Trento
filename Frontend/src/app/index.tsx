@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Dimensions, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
@@ -68,6 +69,7 @@ export default function HomeScreen() {
   const [newSubcardText, setNewSubcardText] = useState('');
   const [contentSize, setContentSize] = useState({ width: 0, height: 0 });
 
+  const router = useRouter();
   const activeColor = colorOrder[activeIndex];
   const { floatDistance, floatDuration, floatDelay } = speedConfig[activeColor];
 
@@ -222,7 +224,12 @@ export default function HomeScreen() {
         onPlusPress={handlePlusPress}
       />
 
-      <Footer />
+      <Footer
+        onQuadrosPress={() => router.push('/')}
+        onCartoesPress={() => router.push('/cards')}
+        onNotificacaoPress={() => router.push('/changes')}
+        onContaPress={() => router.push('/account')}
+      />
 
       <Modal visible={isCreating} transparent animationType="fade">
         <View style={styles.modalOverlay}>

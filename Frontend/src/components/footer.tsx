@@ -1,26 +1,55 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { theme, Spacing } from '@/constants/theme';
 
-export function Footer() {
+export function Footer({
+  onQuadrosPress,
+  onCartoesPress,
+  onNotificacaoPress,
+  onContaPress,
+}: {
+  onQuadrosPress?: () => void;
+  onCartoesPress?: () => void;
+  onNotificacaoPress?: () => void;
+  onContaPress?: () => void;
+}) {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <View style={styles.item}>
+        <Pressable
+          style={styles.item}
+          onPress={onQuadrosPress}
+          android_ripple={{ color: theme.colors.primary, borderless: false }}
+        >
           <Image style={styles.icon} source={require('../../assets/emotes/Frame.png')} />
           <Text style={styles.label}>Quadros</Text>
-        </View>
-        <View style={[styles.item, styles.divider]}>
+        </Pressable>
+
+        <Pressable
+          style={[styles.item, styles.divider]}
+          onPress={onCartoesPress}
+          android_ripple={{ color: theme.colors.primary, borderless: false }}
+        >
           <Image style={styles.icon} source={require('../../assets/emotes/Inbox.png')} />
           <Text style={styles.label}>Cartões</Text>
-        </View>
-        <View style={[styles.item, styles.divider]}>
+        </Pressable>
+
+        <Pressable
+          style={[styles.item, styles.divider]}
+          onPress={onNotificacaoPress}
+          android_ripple={{ color: theme.colors.primary, borderless: false }}
+        >
           <Image style={styles.icon} source={require('../../assets/emotes/Notification.png')} />
-          <Text style={styles.label}>Notificação</Text>
-        </View>
-        <View style={[styles.item, styles.divider]}>
+          <Text style={styles.label}>Alterações</Text>
+        </Pressable>
+
+        <Pressable
+          style={[styles.item, styles.divider]}
+          onPress={onContaPress}
+          android_ripple={{ color: theme.colors.primary, borderless: false }}
+        >
           <Image style={styles.icon} source={require('../../assets/emotes/Account.png')} />
           <Text style={styles.label}>Conta</Text>
-        </View>
+        </Pressable>
       </View>
     </View>
   );

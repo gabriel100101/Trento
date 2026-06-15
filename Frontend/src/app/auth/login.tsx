@@ -13,13 +13,19 @@ export default function LoginScreen() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [clickedMessage, setClickedMessage] = useState<string>('');
 
   const onSubmit = () => {
     // Não precisa salvar / não valida no backend (requisito do exercício)
     if (!email.trim() || !password.trim()) return;
     login({ email });
-    router.replace('/');
+    router.replace('/'); // Navega para a tela principal do app
   };
+
+  const onForgotPassword = () => {
+    setClickedMessage('Você clicou: esqueceu sua senha?');
+  };
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,9 +35,10 @@ export default function LoginScreen() {
         <Text style={styles.title}>Entrar</Text>
         <Text style={styles.subtitle}>Acesse sua conta para continuar.</Text>
 
+        <Text style={styles.label}>Coloque seu email ou nome</Text>
         <TextInput
           style={styles.input}
-          placeholder="Email"
+          placeholder="Lembra seu email ou nome?"
           placeholderTextColor={theme.colors.border}
           value={email}
           onChangeText={setEmail}
@@ -40,9 +47,10 @@ export default function LoginScreen() {
           autoCorrect={false}
         />
 
+        <Text style={styles.label}>Coloque sua senha</Text>
         <TextInput
           style={styles.input}
-          placeholder="Senha"
+          placeholder="Qual senha colocou?"
           placeholderTextColor={theme.colors.border}
           value={password}
           onChangeText={setPassword}
@@ -53,15 +61,25 @@ export default function LoginScreen() {
           <Text style={styles.primaryButtonText}>Entrar</Text>
         </Pressable>
 
+        <Pressable style={styles.forgotButton} onPress={onForgotPassword}>
+          <Text style={styles.forgotText}>esqueceu sua senha?</Text>
+        </Pressable>
+
+
         <View style={styles.separatorRow}>
           <View style={styles.separatorLine} />
           <Text style={styles.separatorText}>ou</Text>
           <View style={styles.separatorLine} />
         </View>
 
+          <Text style={styles.linkText}>não possui conta? crie uma</Text>
+
         <Pressable style={styles.secondaryButton} onPress={() => router.push('/auth/register')}>
           <Text style={styles.secondaryButtonText}>Criar conta</Text>
         </Pressable>
+
+        <Text style={styles.clickedText}>{clickedMessage}</Text>
+
       </View>
     </SafeAreaView>
   );
@@ -83,6 +101,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: '800',
     color: theme.colors.text,
+    marginTop: 10,
     marginBottom: 8,
     textAlign: 'center',
   },
@@ -92,6 +111,14 @@ const styles = StyleSheet.create({
     marginBottom: 22,
     textAlign: 'center',
     maxWidth: 360,
+  },
+  label: {
+    width: '98%',
+    color: theme.colors.textSecondary,
+    fontSize: 12,
+    fontWeight: '700',
+    marginBottom: 10,
+    marginTop: 15,
   },
   input: {
     width: '100%',
@@ -110,7 +137,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 14,
     alignItems: 'center',
-    marginTop: 6,
+    marginTop: 25,
   },
   primaryButtonText: {
     color: theme.colors.background,
@@ -140,6 +167,7 @@ const styles = StyleSheet.create({
   separatorLine: {
     flex: 1,
     height: 1,
+    marginTop: 20,
     backgroundColor: theme.colors.border,
   },
   separatorText: {
@@ -147,6 +175,36 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     fontSize: 12,
     fontWeight: '700',
+    marginTop: 20,
+  },
+  forgotButton: {
+    width: '100%',
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 1,
+  },
+  forgotText: {
+    color: theme.colors.primary,
+    fontSize: 13,
+    fontWeight: '800',
+    textAlign: 'center',
+  },
+  linkText: {
+    color: theme.colors.primary,
+    fontSize: 13,
+    fontWeight: '800',
+    marginTop: 20,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  clickedText: {
+    color: theme.colors.textSecondary,
+    fontSize: 12,
+    marginTop: 20,
+    minHeight: 18,
+    textAlign: 'center',
   },
 });
+
+
 

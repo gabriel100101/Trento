@@ -20,7 +20,7 @@ export default function RegisterScreen() {
     // Mesmo assim, após "criar conta", liberamos a navegação.
     if (!name.trim() || !email.trim() || !password.trim()) return;
     login({ email });
-    router.replace('/');
+    router.replace('/auth/login');
   };
 
   return (
@@ -31,18 +31,20 @@ export default function RegisterScreen() {
         <Text style={styles.title}>Criar conta</Text>
         <Text style={styles.subtitle}>Preencha os dados para entrar no app.</Text>
 
+        <Text style={styles.label}>Seja criativo :)</Text>
         <TextInput
           style={styles.input}
-          placeholder="Nome"
+          placeholder="Pense num nome que queira ser chamado"
           placeholderTextColor={theme.colors.border}
           value={name}
           onChangeText={setName}
           autoCapitalize="words"
         />
 
+        <Text style={styles.label}>Pensa num email na qual não vai esquecer</Text>
         <TextInput
           style={styles.input}
-          placeholder="Email"
+          placeholder="Exemplo@gmail.com"
           placeholderTextColor={theme.colors.border}
           value={email}
           onChangeText={setEmail}
@@ -51,18 +53,25 @@ export default function RegisterScreen() {
           autoCorrect={false}
         />
 
+        <Text style={styles.label}>A parte mais importante, A senha</Text>
         <TextInput
           style={styles.input}
-          placeholder="Senha"
+          placeholder="Entre 5 a 10 digítos, apenas letras e números"
           placeholderTextColor={theme.colors.border}
           value={password}
           onChangeText={setPassword}
           secureTextEntry
         />
 
-        <Pressable style={styles.primaryButton} onPress={onSubmit}>
-          <Text style={styles.primaryButtonText}>Criar conta</Text>
+        <Pressable style={styles.primaryButton} onPress={() => router.push('/auth/login')}>
+          <Text style={styles.primaryButtonText}>Pronto?</Text>
         </Pressable>
+
+        <View style={styles.separatorRow}>
+                  <View style={styles.separatorLine} />
+                  <Text style={styles.separatorText}>se lembrou??</Text>
+                  <View style={styles.separatorLine} />
+                </View>
 
         <Pressable style={styles.secondaryButton} onPress={() => router.replace('/auth/login')}>
           <Text style={styles.secondaryButtonText}>Já tenho conta</Text>
@@ -90,6 +99,7 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
     marginBottom: 8,
     textAlign: 'center',
+    marginTop: 10,
   },
   subtitle: {
     color: theme.colors.textSecondary,
@@ -115,13 +125,32 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 14,
     alignItems: 'center',
-    marginTop: 6,
+    marginTop: 25,
   },
   primaryButtonText: {
     color: theme.colors.background,
     fontSize: 16,
     fontWeight: '800',
   },
+  separatorRow: {
+      width: '100%',
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginVertical: 18,
+    },
+    separatorLine: {
+      flex: 1,
+      height: 1,
+      marginTop: 15,
+      backgroundColor: theme.colors.border,
+    },
+    separatorText: {
+      marginHorizontal: 10,
+      color: theme.colors.textSecondary,
+      fontSize: 12,
+      fontWeight: '700',
+      marginTop: 15,
+    },
   secondaryButton: {
     width: '100%',
     backgroundColor: theme.colors.surface,
@@ -130,12 +159,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderColor: theme.colors.border,
-    marginTop: 12,
+    marginTop: 17,
   },
   secondaryButtonText: {
     color: theme.colors.text,
     fontSize: 16,
     fontWeight: '800',
+  },
+  label: {
+      width: '98%',
+      color: theme.colors.textSecondary,
+      fontSize: 12,
+      fontWeight: '700',
+      marginBottom: 10,
+      marginTop: 15,
   },
 });
 
